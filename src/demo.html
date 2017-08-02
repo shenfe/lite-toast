@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+        <title>demo</title>
+        <script src="./toast.js" charset="utf-8"></script>
+        <style>
+            body {
+                font-family: monospace;
+                background: #eee;
+            }
+            #button1, #button2 {
+                height: 48px;
+                margin: 8px;
+                line-height: 48px;
+                border-radius: 8px;
+                text-align: center;
+            }
+            #button1 {
+                background: pink;
+            }
+            #button2 {
+                background: darkseagreen;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="button1">Normal</div>
+        <div id="button2">Callback</div>
+        <script type="text/javascript">
+            window.onload = function () {
+                document.getElementById('button1').addEventListener('click', function (e) {
+                    Toast('Hello!');
+                }, false);
+                document.getElementById('button2').addEventListener('click', function (e) {
+                    Toast('How are<br>you?', {
+                        cssText: 'border:1px solid #ccc;text-align:center;color:#000;background:rgba(255,255,255,0.5);',
+                        delay: 1500,
+                        callback: function () {
+                            alert('So who cares?');
+                        }
+                    });
+                }, false);
+            };
+        </script>
+    </body>
+</html>
