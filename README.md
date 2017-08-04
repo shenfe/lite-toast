@@ -1,6 +1,9 @@
 # lite-toast
 A lightweight toast component for mobile frontend.
 
+## Demo
+[Demo](http://shenfe.github.io/repos/lite-toast/demo.html)
+
 ## Usage
 ```js
 Toast('Hello!');
