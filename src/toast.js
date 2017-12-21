@@ -1,6 +1,5 @@
 var rand_826738140 = (function () {
     var document = window.document,
-        placeId  = 'rand_8237598655734',
         cssText  = 'pointer-events: none;\
                     color: #fff;\
                     opacity: 0;\
@@ -25,27 +24,20 @@ var rand_826738140 = (function () {
 
     return function (content, option) {
         option = option || {};
-
-        var dom = document.getElementById(placeId);
-        if (dom === null) {
-            dom = document.createElement('span');
-            dom.id = placeId;
-            document.body.appendChild(dom);
-        }
+        var dom = document.createElement('span');
         dom.style.cssText = cssText + (option.cssText || '');
-
+        document.body.appendChild(dom);
         dom.innerHTML = content;
         dom.style.pointerEvents = 'auto';
+        dom.style.opacity = '1';
         window.setTimeout(function () {
-            dom.style.opacity = '1';
+            dom.style.pointerEvents = 'none';
+            dom.style.opacity = '0';
             window.setTimeout(function () {
-                dom.style.pointerEvents = 'none';
-                dom.style.opacity = '0';
-                window.setTimeout(function () {
-                    option.callback && option.callback();
-                }, 0);
-            }, option.delay || 1000);
-        }, 0);
+                option.callback && option.callback();
+                document.body.removeChild(dom);
+            }, 0);
+        }, option.delay || 1000);
     };
 })();
 
