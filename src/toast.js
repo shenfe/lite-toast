@@ -28,16 +28,18 @@ var rand_826738140 = (function () {
         dom.style.cssText = cssText + (option.cssText || '');
         document.body.appendChild(dom);
         dom.innerHTML = content;
-        dom.style.pointerEvents = 'auto';
-        dom.style.opacity = '1';
         window.setTimeout(function () {
-            dom.style.pointerEvents = 'none';
-            dom.style.opacity = '0';
+            dom.style.pointerEvents = 'auto';
+            dom.style.opacity = '1';
             window.setTimeout(function () {
-                option.callback && option.callback();
-                document.body.removeChild(dom);
-            }, 0);
-        }, option.delay || 1000);
+                dom.style.pointerEvents = 'none';
+                dom.style.opacity = '0';
+                window.setTimeout(function () {
+                    option.callback && option.callback();
+                    document.body.removeChild(dom);
+                }, 250);
+            }, option.delay || 1000);
+        }, 0);
     };
 })();
 
